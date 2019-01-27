@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Manager\UserManager;
+use JMS\Serializer\SerializerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +17,10 @@ class UserController extends Controller
      */
     private $userManager;
 
-    public function __construct(UserManager $userManager)
+    public function __construct(UserManager $userManager, SerializerInterface $serializer)
     {
+        parent::__construct($serializer);
+
         $this->userManager = $userManager;
     }
 
